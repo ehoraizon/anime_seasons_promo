@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkanime_seasons_promo=self.webpackChunkanime_seasons_promo||[]).push([[218],{938:function(e,n,t){t.r(n);var a=t(7294);n.default=function(e){var n=e.path;return a.createElement("main",null,a.createElement("title",null,"Not Found"),a.createElement("h1",null,"Page not found"),a.createElement("h2",null,n))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-ecb484a8b0bb8892ac0c.js.map
