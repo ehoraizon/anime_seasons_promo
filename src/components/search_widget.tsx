@@ -55,35 +55,4 @@ class SearchWidget extends React.Component<SearchWidgetProps> {
     }
 }
 
-
-// const SearchWidget : React.FC<SearchWidgetProps> = ({appService}) => {
-//     const [animes, setAnimes] = React.useState([]);
-//     const [keywords, setKeywords] = React.useState("");
-//     const onChangeInput = (e : React.FormEvent<HTMLInputElement>) =>
-//                             setKeywords(e.currentTarget.value);
-//     const searchAnime = () => {
-//         if (keywords.length > 3){
-//             appService.searchForAnime(keywords)
-//                 .then(value => setAnimes(value));
-//         }
-//     }
-//     React.useEffect(() => {
-//         appService.getTopAnimes().then(value => setAnimes(value));
-//     }, []);
-//     return (
-//         <article id="search-widget">
-//             <div id="search-bar">
-//                 <input className="input" onKeyDown={e => {if (e.code == "Enter") searchAnime()}} 
-//                         onChange={onChangeInput.bind(this)}/>
-//                 <div className="button" onClick={() => searchAnime()}>
-//                     {/* <MaterialIcon icon="search" /> */}
-//                 </div>
-//             </div>
-//             <div id="search-results" className="columns is-mobile is-multiline">
-//                 {animes.map(anime => <AnimeCard key={anime.mal_id} name={anime.title} url={anime.image_url}/>)}
-//             </div>
-//         </article>
-//     ) 
-// }
-
 export default SearchWidget;

@@ -6,10 +6,6 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
             {
               test: /axios|material-icons-react|webfontloader/,
               use: loaders.null(),
-            },
-            {
-              test: /material-icons-react/,
-              use: loaders.null()
             }
           ],
         },
