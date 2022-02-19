@@ -1,0 +1,35 @@
+@import "./bulma.scss";
+
+#search-widget{
+    @include center-flex;
+    @include widget;
+    background-color: $yellow !important;
+    margin-top: 2rem;
+    padding: 1rem;
+    .columns > .column {
+        @include center-flex;
+    }
+    #search-bar{
+        @include horizontal-center;
+        margin: 1.5rem;
+        max-width: 650px;
+        min-width: 200px;
+        width: 100%;
+        input, .button {
+            @include radius-shadow;
+            border: none;
+        } 
+        .button {
+            margin-left: 1rem;
+            & > i {
+                color: $red;
+            }
+        }
+    }
+    #search-results{
+        height: calc(100vh - 88px);
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        overflow: auto;
+    }
+}

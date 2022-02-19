@@ -1,0 +1,10 @@
+@import "./bulma.scss";
+// @import "~/bulma/sass/components/_all.sass";
+
+
+.anime-card {
+    @include radius-shadow;
+    max-width: 120px;
+    height: 155px;
+    object-fit: cover;
+}
