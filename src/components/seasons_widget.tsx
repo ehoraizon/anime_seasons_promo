@@ -17,7 +17,7 @@ type SeasonsWidgetState = {
 
 class SeasonsWidget extends React.Component<SeasonsWidgetProps> {
     appService: AppService;
-    updating: boolean;
+    updating: boolean = false;
     yearEventTarget: EventTarget & HTMLDivElement;
     seasonEventTarget: EventTarget & HTMLDivElement;
     state: SeasonsWidgetState = {
@@ -28,8 +28,7 @@ class SeasonsWidget extends React.Component<SeasonsWidgetProps> {
 
     constructor(props: SeasonsWidgetProps) {
         super(props);
-        this.appService = this.props.appService;
-        this.updating = false;
+        this.appService = props.appService;
     }
 
     private static getCurrentSeason() : Season{
@@ -72,7 +71,7 @@ class SeasonsWidget extends React.Component<SeasonsWidgetProps> {
         this.fetchAnimes(this.state.current_year, this.state.current_season);
     }
 
-    render(): React.ReactNode {
+    render(){
         return (
             <div id="seasons-widget" className="box">
                 <div id="year-selector">
@@ -85,16 +84,16 @@ class SeasonsWidget extends React.Component<SeasonsWidgetProps> {
                 </div>
                 <div id="season-selector">
                     <div onClick={() => this.updateSeason(Season.winter)} className={`round-b ${"winter" == this.state.current_season && "active"}`} title="Winter">
-                        <MaterialIcon icon="ac_unit" />
+                        {typeof window !== "undefined" &&  <MaterialIcon icon="ac_unit" />}
                     </div>
                     <div onClick={() => this.updateSeason(Season.spring)} className={`round-b ${"spring" == this.state.current_season && "active"}`} title="Spring">
-                        <MaterialIcon icon="emoji_nature" />
+                        {typeof window !== "undefined" &&  <MaterialIcon icon="emoji_nature" />}
                     </div>
                     <div onClick={() => this.updateSeason(Season.summer)} className={`round-b ${"summer" == this.state.current_season && "active"}`} title="Summer">
-                        <MaterialIcon icon="wb_sunny" />
+                        {typeof window !== "undefined" &&  <MaterialIcon icon="wb_sunny" />}
                     </div>
                     <div onClick={() => this.updateSeason(Season.fall)} className={`round-b ${"fall" == this.state.current_season && "active"}`} title="Fall">
-                        <MaterialIcon icon="air" />
+                        {typeof window !== "undefined" &&  <MaterialIcon icon="air" />}
                     </div>
                 </div>
             </div>

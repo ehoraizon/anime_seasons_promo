@@ -15,14 +15,20 @@ const Index = () => {
     const [downloadUrl, setDownloadUrl] = useState("");
 
     React.useEffect(() => {
-        if (navigator.userAgent.includes("Windows")) {
+        if (typeof window !== "undefined"){
+            if (navigator.userAgent.includes("Windows")) {
+                setIconName("desktop_windows");
+                appService.getInstallable("Windows")
+                            .then(value => setDownloadUrl(value));
+            } else if (navigator.userAgent.includes("Android")) {
+                setIconName("android");
+                appService.getInstallable("Android")
+                            .then(value => setDownloadUrl(value));
+            }
+        } else {
             setIconName("desktop_windows");
             appService.getInstallable("Windows")
-                        .then(value => setDownloadUrl(value));
-        } else if (navigator.userAgent.includes("Android")) {
-            setIconName("android");
-            appService.getInstallable("Android")
-                        .then(value => setDownloadUrl(value));
+                            .then(value => setDownloadUrl(value));
         }
     }, []);
 

@@ -1,4 +1,4 @@
-import axios, * as axions from "axios";
+import axios from "axios";
 
 enum Season {summer = "summer", spring = "spring", fall = "fall", winter = "winter"}
 
@@ -24,13 +24,8 @@ class AppService {
     static appReleases: string = "https://api.github.com/repos/ehoraizon/anime_seasons/releases/latest";
     static androidType: string = "application/vnd.android.package-archive";
     static windowsType: string = "application/x-msdownload";
-    lastCall : Date;
-    numCalls : number;
-
-    constructor(){
-        this.lastCall = new Date();
-        this.numCalls = 0;
-    }
+    lastCall : Date = new Date();
+    numCalls : number = 0;
 
     private getDiffMin(date : Date) : number{
         return Math.round((((date.getTime() - this.lastCall.getTime()) % 86400000) % 3600000) / 60000);
@@ -55,10 +50,13 @@ class AppService {
         }
     }
     private saveInLocalStorage(keyname : string, animes : Array<Anime>){
-        localStorage.setItem(keyname, JSON.stringify(animes));
+        if (typeof window !== "undefined")
+            localStorage.setItem(keyname, JSON.stringify(animes));
     }
     private getFromLocalStorage(keyname : string) : any{
-        return localStorage.getItem(keyname);
+        if (typeof window !== "undefined")
+            return localStorage.getItem(keyname);
+        return "[]";
     }
     private async fetchAnimes(url: string, dbName: string, animeVar: string) : Promise<Array<Anime>>{
         var animes : Array<Anime>;
@@ -68,12 +66,12 @@ class AppService {
         } else {
             try {
                 const resp = await this.executeCall(url);
-                animes = resp.data[animeVar];
-                this.saveInLocalStorage(dbName, animes.sort((animeA, animeB) => {
+                animes = resp.data[animeVar].sort((animeA, animeB) => {
                     if (animeA.score > animeB.score) return -1;
                     else if (animeA.score < animeB.score) return 1;
                     else return 0;
-                }));
+                });
+                this.saveInLocalStorage(dbName, animes);
             } catch (error) {
                 console.log(error);
                 animes = [];

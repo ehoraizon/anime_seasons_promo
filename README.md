@@ -1,11 +1,11 @@
-# Anime Season Promo Web Page
+# Anime Seasons Promo Web Page
 
 ## Install
 
 ```
   git clone https://github.com/ehoraizon/anime_seasons_promo.git
   cd anime_seasons_promo
-  npm run i
+  npm i
 ```
 
 ## Develop
